@@ -1,0 +1,150 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit
+{% endblock %}
+
+{% block main %}
+
+
+<h1> Delete </h1>
+<br>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Hobby</th>
+      <th scope="col">My Level</th>
+      <th scope="col">Male/Female</th>
+      <th scope="col">Age</th>
+      <th scope="col">Text</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in data %}
+    <tr>
+      <td>
+        <form action="/edit" method="post">
+          <button class="btn btn-danger" name="delete" type="submit" value="{{ row["hobby"] }}">Delete</button>
+        </form>
+      </td>
+      <th scope="row">{{ row["hobby"] }}</th>
+      <td>{{ row["level"] }}</td>
+      <td>{{ row["male"] }}/{{ row["female"] }}</td>
+      <td>{{ row["min_age"] }} - {{ row["max_age"] }}</td>
+      <td>{{ row["text"] }}</td>
+    </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+
+<br>
+<br>
+
+<h1> Edit </h1>
+<br>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Hobby</th>
+      <th scope="col">My Level</th>
+      <th scope="col">Male/Female</th>
+      <th scope="col">Age</th>
+      <th scope="col">Text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <form action="/search" method="post">
+      <td>  <button class="btn btn-primary" name="edit" type="submit" >  Edit </button>  </td>
+
+      <th>
+        <div class="form-group row">
+          <div class="col-sm-10">
+              <select name="hobby" class="form-control">
+                    {% for row in data %}
+                    <option value= "{{ row["hobby"] }}" > {{ row["hobby"] }}</option>
+                    {% endfor %}
+              </select>
+          </div>
+        </div>
+      </th>
+
+      <td>
+      <fieldset class="form-group">
+        <div class="row">
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="Beginner" checked>
+              <label class="form-check-label" for="gridRadios1">
+                Beginner
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="Advanced">
+              <label class="form-check-label" for="gridRadios2">
+                Advanced
+              </label>
+            </div>
+            <div class="form-check disabled">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="Expert">
+              <label class="form-check-label" for="gridRadios3">
+                Expert
+              </label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      </td>
+
+      <td>
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="male" id="gridCheck1">
+              <label class="form-check-label" for="gridCheck1">
+                Male
+              </label>
+            </div>
+             <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="female" id="gridCheck1">
+              <label class="form-check-label" for="gridCheck1">
+                Female
+              </label>
+            </div>
+
+          </div>
+        </div>
+      </td>
+
+      <td>
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input class="form-control" name="mi_age" placeholder="From age" min="16" type="number" >
+              <input class="form-control" name="ma_age" placeholder="To age" min="16" max="111" type="number">
+            </div>
+          </div>
+        </div>
+      </td>
+
+      <td>
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <div class="form-check">
+              <textarea class="form-control" name= "text" id="exampleFormControlTextarea1" rows="3" > </textarea>
+            </div>
+          </div>
+        </div>
+      </td>
+
+    </tr>
+    </form>
+  </tbody>
+</table>
+
+{% endblock %}

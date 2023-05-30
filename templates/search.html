@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block main %}
+
+<h1> New search </h1>
+<hr>
+<br>
+
+<form action="/search" method="post">
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">What do you want to do?</label>
+    <div class="col-sm-10">
+        <select name="hobby" class="form-control">
+              {% for row in hobbies %}
+              <option value= "{{ row["hobby"] }}" > {{ row["hobby"] }}</option>
+              {% endfor %}
+        </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label" >What age range do you search for?</label>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <input class="form-control" name="mi_age" placeholder="18" min="16" type="number" >
+        <input class="form-control" name="ma_age" placeholder="25" min="16" max="111" type="number">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">Who are you looking for?</label>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="male" id="gridCheck1">
+        <label class="form-check-label" for="gridCheck1">
+          Male
+        </label>
+      </div>
+       <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="female" id="gridCheck1">
+        <label class="form-check-label" for="gridCheck1">
+          Female
+        </label>
+      </div>
+
+    </div>
+  </div>
+
+  <fieldset class="form-group">
+    <div class="row">
+      <legend class="col-form-label col-sm-2 pt-0">What skill level do you consider yourself?</legend>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="Beginner" checked>
+          <label class="form-check-label" for="gridRadios1">
+            Beginner
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="Advanced">
+          <label class="form-check-label" for="gridRadios2">
+            Advanced
+          </label>
+        </div>
+        <div class="form-check disabled">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="Expert">
+          <label class="form-check-label" for="gridRadios3">
+            Expert
+          </label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <div class="form-group row">
+    <div class="col-sm-2">Tell other users a bit about you and what you want to do!</div>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <textarea class="form-control" name= "text" id="exampleFormControlTextarea1" rows="3" ></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button class="btn btn-primary" type="submit">Match me up!</button>
+    </div>
+  </div>
+</form>
+<hr>
+<br>
+<br>
+<br>
+
+<div> <p class="lead"> Did not find your hobby? Submit your suggestion here:  <a class="btn btn-outline-secondary" href="/suggest" role="button">Suggest</a></p> </div>
+{% endblock %}

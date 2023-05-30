@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+<h1> My Matches </h1>
+<br>
+
+{% for i in range(leng) %}
+<h2 class="matchheads"> {{ hobbies[i] }} </h2>
+<hr>
+<p>
+  {% if not matches[i][0] %}
+   <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+        <div class="card-header">{{ hobbies[i] }}</div>
+        <div class="card-body">
+          <h3 class="card-title">No matches!</h3>
+          <hr style="border:solid white 1px;">
+          <p class="card-text">Have a little patience or alter your search here!</p>
+        </div>
+        <div class="card-footer text-muted">
+          <a href="/edit" class="btn btn-light">Edit search</a>
+        </div>
+      </div>
+  {% else %}
+    <div class="card-deck">
+    {% for j in matches[i] %}
+      <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+        <div class="card-header">{{ hobbies[i] }}</div>
+        <div class="card-body">
+          <h3 class="card-title">{{ j["name"] }}</h3>
+          <h5 class="card-text">Age {{ j["age"] }}, {{ j["level"] }}</h5>
+          <hr style="border:solid white 1px;">
+          <p class="card-text">{{ j["text"] }}</p>
+        </div>
+        <div class="card-footer text-muted">
+          <a href="mailto:{{ j["email"] }}" class="btn btn-light"> Get in contact!</a>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  {% endif %}
+</p>
+{% endfor %}
+
+
+{% endblock %}

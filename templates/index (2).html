@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+
+<h1> My searches </h1>
+<br>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Hobby</th>
+      <th scope="col">My Level</th>
+      <th scope="col">Male/Female</th>
+      <th scope="col">Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in data %}
+    <tr>
+      <th scope="row">{{ row["hobby"] }}</th>
+      <td>{{ row["level"] }}</td>
+      <td>{{ row["male"] }}/{{ row["female"] }}</td>
+      <td>{{ row["min_age"] }} - {{ row["max_age"] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+<br>
+
+{% if not data %}
+<div class="card">
+  <div class="card-body">
+
+    <h1 class="card-title">Empty search list? </h1>
+    <p class="card-text">With Mobby you can search for people with the same interests and hobbies! Start now!</p>
+    <a class="btn btn-primary" href="/search" role="button">Search</a>
+  </div>
+</div>
+
+{% else %}
+<div class="card">
+  <div class="card-body">
+
+    <h1 class="card-title">Check out your matches! <span class="badge badge-secondary">New</span></h1>
+    <p class="card-text">We have managed to match you up with people of the same interest. Check them out here!</p>
+    <a class="btn btn-primary" href="/match" role="button">My matches</a>
+  </div>
+</div>
+{% endif %}
+
+
+
+{% endblock %}

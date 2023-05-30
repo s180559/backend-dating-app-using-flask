@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Suggest
+{% endblock %}
+
+{% block main %}
+
+<h1>Current Suggestions </h1>
+<hr>
+<br>
+<p class="lead"> These are suggestions of hobbies and activities that people desire to select in the future.<br>
+                The most popular ones will be added by us. You can submit your own suggestions below! </p>
+<br>
+  {% for row in data %}
+
+    <div class="progress" style="height: 30px;">
+      <div class="progress-bar" role="progressbar" style="width: {{ (row["n"] / data[0]["n"])*100 }}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="{{ data[0]["n"] }}">
+        <h5>{{ row["title"] }}: {{ row["n"] }} votes</h5>
+        </div>
+    </div>
+    <br>
+  {% endfor %}
+<br>
+<br>
+
+<h1> Your suggestions </h1>
+<br>
+
+<ul class="list-group list-group-horizontal-md">
+  {% for i in sug %}
+  <li class="list-group-item">{{ i["title"] }}</li>
+  {% endfor %}
+</ul>
+
+<br>
+
+<form action="/suggest" method="post">
+  <div class="input-group input-group-lg">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-sm">Please only submit your desired hobby, e.g. "Football"</span>
+    </div>
+    <input type="text" class="form-control" name="suggest" placeholder="Your suggestion" aria-label="suggest" aria-describedby="button-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="submit" id="button-addon2">Suggest</button>
+    </div>
+  </div>
+</form>
+
+{% endblock %}
+
+
+
+
+
